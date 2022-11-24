@@ -35,6 +35,7 @@ const AuthProvider = ({children}) => {
     }
 
     const logout = () => {
+      localStorage.removeItem("autoTraders")
       return signOut(auth)
     }
     

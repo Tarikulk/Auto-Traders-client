@@ -1,6 +1,7 @@
 import React, { useContext } from 'react' 
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom' 
+import { setAuthToken } from '../../Api/auth';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Signup = () => {
@@ -33,6 +34,7 @@ const Signup = () => {
       createUser(email, password)
       .then(result =>{
         const user = result.user;  
+        setAuthToken(user)
         console.log(user)
         updateUserProfile(name, data.data.display_url)
         .then(
@@ -54,6 +56,7 @@ const Signup = () => {
     signInWithGoogle()
     .then(result => {
       const user = result.user;
+      setAuthToken(user)
       toast.success("Login successful")
       console.log(user)
     })
@@ -139,18 +142,18 @@ const Signup = () => {
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div> 
-                <div className="form-control">
+                {/* <div className="form-control">
           <label className="label cursor-pointer">
             <span className="label-text">Buyer</span> 
             <input type="radio" name="radio-10" className="radio checked:bg-red-500" checked />
           </label>
-        </div>
-        <div className="form-control">
+        </div> */}
+        {/* <div className="form-control">
           <label className="label cursor-pointer">
             <span className="label-text">Seller</span> 
             <input type="radio" name="radio-10" className="radio checked:bg-blue-500" checked />
           </label>
-        </div>
+        </div> */}
 
           <div className='space-y-2'>
           <div className='w-full text-center'>
