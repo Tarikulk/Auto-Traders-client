@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 import "./Navbar.css";
 
 const Navbar = () => {
+
+  const {user, logout} = useContext(AuthContext);
+
+  const handleLogOut = () =>{
+    logout()
+    .then(() =>{})
+    .catch(error => {
+      toast.error(error)
+      console.log(error)
+    })
+  }
+
   return (
     <div>
       <header className="lg:px-16 px-8 bg-indigo-700 shadow-md py-4 md:py-0">
@@ -50,16 +64,9 @@ const Navbar = () => {
                     Contact Us
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to="signIn"
-                    className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-indigo-800"
-                    href=""
-                  >
-                    Sing In
-                  </Link>
-                </li>
-                <li className="dropdown inline-block relative w-full md:w-auto md:mb-0 mb-2">
+                {
+                  user?.uid ?  
+                  <li className="dropdown inline-block relative w-full md:w-auto md:mb-0 mb-2">
                   <div className="dropdown dropdown-end">
                     <label
                       tabIndex={0}
@@ -83,11 +90,23 @@ const Navbar = () => {
                         <a>Settings</a>
                       </li>
                       <li>
-                        <a>Logout</a>
+                        <button onClick={handleLogOut}>Logout</button>
                       </li>
                     </ul>
                   </div>
+                </li> 
+                :
+                  <li>
+                  <Link
+                    to="signIn"
+                    className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-indigo-800"
+                    href=""
+                  >
+                    Sing In
+                  </Link>
                 </li>
+               
+                }
               </ul>
           </div>
         </div>

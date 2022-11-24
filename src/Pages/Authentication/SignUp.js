@@ -138,8 +138,7 @@ const Signup = () => {
             Select Role
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-        </div>
-
+        </div> 
                 <div className="form-control">
           <label className="label cursor-pointer">
             <span className="label-text">Buyer</span> 

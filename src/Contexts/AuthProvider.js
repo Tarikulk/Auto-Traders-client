@@ -1,6 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import app from '../Firebase/Firebase.config';
-import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, updateProfile} from "firebase/auth"
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from "firebase/auth"
 
 export const AuthContext = createContext()
 const auth = getAuth(app)
@@ -19,6 +19,13 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, googleProvider)
       }
 
+      const updateUserProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photo,
+        })
+      }
+
     const signIn = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
@@ -26,18 +33,22 @@ const AuthProvider = ({children}) => {
     const resetPassword = email => {
         return sendPasswordResetEmail(auth, email)
     }
-    
 
+    const logout = () => {
+      return signOut(auth)
+    }
     
-  //   2. Update Name
-  const updateUserProfile = (name, photo) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: photo,
-    })
-  }
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, currentUser => {
+        setUser(currentUser)
+      }) 
+    return () => {
+      unsubscribe()
+    }
+  }, [])
+  
 
-    const authInfo = {user, createUser, updateUserProfile, signIn, resetPassword, signInWithGoogle}
+    const authInfo = {user, createUser, updateUserProfile, signIn, resetPassword, signInWithGoogle, logout}
  
     return (
         <div>
