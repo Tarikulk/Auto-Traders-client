@@ -1,16 +1,19 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import "./Navbar.css";
 
 const Navbar = () => {
 
   const {user, logout} = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogOut = () =>{
     logout()
-    .then(() =>{})
+    .then(() =>{
+      navigate("signIn")
+    })
     .catch(error => {
       toast.error(error)
       console.log(error)
@@ -30,7 +33,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <label for="menu-toggle" className="pointer-cursor md:hidden block">
+          <label htmlFor="menu-toggle" className="pointer-cursor md:hidden block">
             <svg
               className="fill-current text-gray-300 hover:text-white"
               xmlns="http://www.w3.org/2000/svg"
@@ -48,6 +51,15 @@ const Navbar = () => {
             id="menu"
           >
               <ul className="md:flex items-center justify-between text-base pt-4 md:pt-0">
+                <li>
+                  <Link
+                   to="/"
+                    className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-indigo-800"
+                    href=""
+                  >
+                    Home
+                  </Link>
+                </li>
                 <li>
                   <Link
                     className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-indigo-800"

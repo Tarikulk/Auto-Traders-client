@@ -1,12 +1,17 @@
 import React, { useContext, useState } from 'react'
 import toast from 'react-hot-toast'
-import { Link} from 'react-router-dom'
+import { Link, useLocation, useNavigate} from 'react-router-dom'
+import { setAuthToken } from '../../Api/auth'
 import { AuthContext } from '../../Contexts/AuthProvider'
 
 const SingIn = () => {
 
   const {signIn, signInWithGoogle, resetPassword, loading, setLoading} = useContext(AuthContext)
   const [userEmail, setUserEmail] = useState("");
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/"
   
   const handleSubmit = event =>{
     event.preventDefault();
@@ -18,7 +23,9 @@ const SingIn = () => {
     .then(result =>{
       const user = result.user;
       console.log(user)
+      setAuthToken(user)
       toast.success("Login successful")
+      navigate(from, {replace:true})
       form.reset();
     })
     .catch(error => {
@@ -30,7 +37,9 @@ const SingIn = () => {
     signInWithGoogle()
     .then(result => {
       const user = result.user;
+      setAuthToken(user)
       toast.success("Login successful")
+      navigate(from, {replace:true})
       console.log(user)
     })
     .catch(error => console.error(error))

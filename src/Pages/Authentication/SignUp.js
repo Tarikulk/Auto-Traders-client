@@ -7,8 +7,9 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 const Signup = () => {
 
   const {createUser, updateUserProfile, loading, setLoading, signInWithGoogle} = useContext(AuthContext);
-  const navigate = useNavigate();
+
   const location = useLocation();
+  const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/"
 
   const handleSubmit = event =>{
@@ -39,7 +40,8 @@ const Signup = () => {
         updateUserProfile(name, data.data.display_url)
         .then(
           toast.success("user create successfully")
-        )
+          )
+          navigate("/")
         .catch(error => console.error(error))
         form.reset();
       })
@@ -58,6 +60,7 @@ const Signup = () => {
       const user = result.user;
       setAuthToken(user)
       toast.success("Login successful")
+      navigate(from, {replace:true})
       console.log(user)
     })
     .catch(error => console.error(error))
@@ -142,18 +145,19 @@ const Signup = () => {
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div> 
-                {/* <div className="form-control">
+        
+          <div className="form-control">
           <label className="label cursor-pointer">
             <span className="label-text">Buyer</span> 
             <input type="radio" name="radio-10" className="radio checked:bg-red-500" checked />
           </label>
-        </div> */}
-        {/* <div className="form-control">
+        </div>  
+        <div className="form-control">
           <label className="label cursor-pointer">
             <span className="label-text">Seller</span> 
-            <input type="radio" name="radio-10" className="radio checked:bg-blue-500" checked />
+            <input type="radio" name="radio-10" className="radio checked:bg-blue-500" />
           </label>
-        </div> */}
+        </div> 
 
           <div className='space-y-2'>
           <div className='w-full text-center'>
