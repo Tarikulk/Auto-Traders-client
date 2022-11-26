@@ -23,7 +23,10 @@ const SingIn = () => {
     .then(result =>{
       const user = result.user;
       console.log(user)
-      setAuthToken(user)
+      const userInfo = {
+        user,
+      }
+      setAuthToken(userInfo)
       toast.success("Login successful")
       navigate(from, {replace:true})
       form.reset();
@@ -37,7 +40,12 @@ const SingIn = () => {
     signInWithGoogle()
     .then(result => {
       const user = result.user;
-      setAuthToken(user)
+
+      const userInfo = {
+        user, 
+      }
+
+      setAuthToken(userInfo)
       toast.success("Login successful")
       navigate(from, {replace:true})
       console.log(user)

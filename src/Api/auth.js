@@ -1,9 +1,10 @@
-export const setAuthToken = user =>{
+export const setAuthToken = userInfo =>{
         const currentUser = {
-        email : user.email, 
+        email : userInfo.user.email, 
+        role : userInfo.role
     }
 
-    fetch(`http://localhost:5000/user/${user?.email}`, {
+    fetch(`http://localhost:5000/user/${userInfo?.user?.email}`, {
         method:"PUT",
         headers:{  
             "content-type": "application/json"

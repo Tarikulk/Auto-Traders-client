@@ -1,10 +1,9 @@
 import React from 'react';
 
-const Categories = ({categories}) => {
+const Categories = ({categories, setBookingsCar}) => {
 
 
-    const {author, details, name, price, YearsOfUse} = categories;
-    console.log(categories)
+    const {author, name, price, YearsOfUse} = categories; 
 
     return (
         <div>
@@ -46,7 +45,7 @@ const Categories = ({categories}) => {
 		 <h1> Posted:</h1>
 	</div>
            <div className='w-full text-center'>
-           <button className="btn glass w-full text-white font-bold">Pay</button>
+		   <label onClick={() => setBookingsCar(categories)} htmlFor="booking-modal" className="btn glass w-full text-white font-bold">Book Car</label>
            </div>
 	</div>
 </div>

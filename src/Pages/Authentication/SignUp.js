@@ -19,6 +19,8 @@ const Signup = () => {
     const image = form.image.files[0];
     const email = form.email.value;
     const password = form.password.value;
+    const role = form.role.value;
+     
 
 
     const formData = new FormData();
@@ -35,17 +37,27 @@ const Signup = () => {
       createUser(email, password)
       .then(result =>{
         const user = result.user;  
-        setAuthToken(user)
+        const userInfo = {
+          user,
+          role
+        }
+        setAuthToken(userInfo)
         console.log(user)
         updateUserProfile(name, data.data.display_url)
         .then(
           toast.success("user create successfully")
           )
           navigate("/")
-        .catch(error => console.error(error))
+        .catch(error => {
+          toast.success("user create successfully")
+          console.error(error)}
+        )
         form.reset();
       })
-      .catch(error => console.error(error))
+      .catch(error => {
+      toast.error(error)
+      console.error(error)
+      })
 
     })
     .catch(error =>  {
@@ -58,7 +70,10 @@ const Signup = () => {
     signInWithGoogle()
     .then(result => {
       const user = result.user;
-      setAuthToken(user)
+      const userInfo = {
+        user
+      }
+      setAuthToken(userInfo)
       toast.success("Login successful")
       navigate(from, {replace:true})
       console.log(user)
@@ -89,7 +104,7 @@ const Signup = () => {
                 type='text'
                 name='name'
                 id='name'
-                required
+                // required
                 placeholder='Enter Your Name Here'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-indigo-700 bg-gray-200 text-gray-900'
                 data-temp-mail-org='0'
@@ -104,7 +119,7 @@ const Signup = () => {
                 id='image'
                 name='image'
                 accept='image/*'
-                required
+                // required
               />
             </div>
             <div>
@@ -112,7 +127,7 @@ const Signup = () => {
                 Email address
               </label>
               <input
-                required
+                // required
                 type='email'
                 name='email'
                 id='email'
@@ -131,7 +146,7 @@ const Signup = () => {
                 type='password'
                 name='password'
                 id='password'
-                required
+                // required
                 placeholder='*******'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:outline-indigo-700 text-gray-900'
               />
@@ -146,18 +161,12 @@ const Signup = () => {
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div> 
         
-          <div className="form-control">
-          <label className="label cursor-pointer">
-            <span className="label-text">Buyer</span> 
-            <input type="radio" name="radio-10" className="radio checked:bg-red-500" checked />
-          </label>
-        </div>  
-        <div className="form-control">
-          <label className="label cursor-pointer">
-            <span className="label-text">Seller</span> 
-            <input type="radio" name="radio-10" className="radio checked:bg-blue-500" />
-          </label>
-        </div> 
+        <div className="form-control w-full max-w-xs"> 
+          <select name='role' className="select select-bordered">
+            <option selected value="seller">Seller</option>
+            <option value="buyer">Buyer</option>
+          </select> 
+        </div>
 
           <div className='space-y-2'>
           <div className='w-full text-center'>
