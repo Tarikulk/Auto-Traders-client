@@ -71,7 +71,8 @@ const Signup = () => {
     .then(result => {
       const user = result.user;
       const userInfo = {
-        user
+        user,
+        role : "buyer"
       }
       setAuthToken(userInfo)
       toast.success("Login successful")

@@ -85,7 +85,7 @@ const Navbar = () => {
                       className="btn btn-ghost btn-circle avatar"
                     >
                       <div className="w-10 rounded-full">
-                        <img src="https://placeimg.com/80/80/people" alt="" />
+                        <img src={user?.photoURL} alt="" />
                       </div>
                     </label>
                     <ul
@@ -93,14 +93,10 @@ const Navbar = () => {
                       className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
                     >
                       <li>
-                        <a className="justify-between">
-                          Profile
-                          <span className="badge">New</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a>Settings</a>
-                      </li>
+                        <Link to="/dashboard" className="justify-between">
+                          Dashboard
+                        </Link>
+                      </li> 
                       <li>
                         <button onClick={handleLogOut}>Logout</button>
                       </li>

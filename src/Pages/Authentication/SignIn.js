@@ -43,6 +43,7 @@ const SingIn = () => {
 
       const userInfo = {
         user, 
+        role : "buyer"
       }
 
       setAuthToken(userInfo)
