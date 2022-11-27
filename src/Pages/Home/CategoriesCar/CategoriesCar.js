@@ -5,7 +5,7 @@ import Categories from './Categories';
 
 const CategoriesCar = () => {
 
-    const [bookingsCar, setBookingsCar] = useState(null)
+    const [bookingsCar, setBookingsCar] = useState("")
     const categoriesCar = useLoaderData();
 
     return (
@@ -21,6 +21,7 @@ const CategoriesCar = () => {
              bookingsCar && categoriesCar.map(categories => <BookingModal
                 key={categories._id}
                 categories={categories}
+                bookingsCar={bookingsCar}
                 setBookingsCar={setBookingsCar}
                 ></BookingModal>)
            }

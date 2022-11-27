@@ -12,7 +12,7 @@ const Navbar = () => {
   const handleLogOut = () =>{
     logout()
     .then(() =>{
-      navigate("signIn")
+      navigate("/signIn")
     })
     .catch(error => {
       toast.error(error)
@@ -79,7 +79,7 @@ const Navbar = () => {
                 {
                   user?.uid ?  
                   <li className="dropdown inline-block relative w-full md:w-auto md:mb-0 mb-2">
-                  <div className="dropdown dropdown-end">
+                  <div className="dropdown dropdown-start md:dropdown-end">
                     <label
                       tabIndex={0}
                       className="btn btn-ghost btn-circle avatar"

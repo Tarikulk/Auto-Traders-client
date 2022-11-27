@@ -3,6 +3,9 @@ import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import SignIn from "../../Pages/Authentication/SignIn";
 import SignUp from "../../Pages/Authentication/SignUp";
+import AddAProduct from "../../Pages/DashboardData/AddAProduct";
+import BuyersHome from "../../Pages/DashboardData/BuyersHome";
+import MyProducts from "../../Pages/DashboardData/MyProducts";
 import CategoriesCar from "../../Pages/Home/CategoriesCar/CategoriesCar";
 import Home from "../../Pages/Home/Home/Home";
 import ErrorPage from "../../Pages/Shared/ErrorPage/ErrorPage";
@@ -38,7 +41,18 @@ export const router = createBrowserRouter([
         element: <DashboardLayout></DashboardLayout>,
         errorElement:<ErrorPage></ErrorPage>,
         children:[
-           
+           {
+            path:"/dashboard/buyerHome",
+            element:<BuyersHome></BuyersHome>
+           },
+           {
+            path:"/dashboard/addAProducts",
+            element: <AddAProduct></AddAProduct>
+           },
+           {
+            path:"/dashboard/myProducts",
+            element: <MyProducts></MyProducts>
+           }
         ]
     }
 ])

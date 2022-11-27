@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Categories = ({categories, setBookingsCar}) => {
-
+const Categories = ({categories, setBookingsCar}) => { 
 
     const {author, name, price, YearsOfUse} = categories; 
 
