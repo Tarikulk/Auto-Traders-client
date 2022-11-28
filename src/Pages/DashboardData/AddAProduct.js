@@ -1,7 +1,13 @@
-import React  from 'react'; 
+import React, { useContext }  from 'react'; 
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const AddAProduct = () => {
+
+	const navigate = useNavigate()
+
+	const {user} = useContext(AuthContext);
  
 	 const handleSubmit = event =>{
 		
@@ -12,6 +18,7 @@ const AddAProduct = () => {
 		const price = form.price.value;
 		const condition = form.condition.value;
 		const phone = form.phone.value;
+		const email = form.email.value;
 		const location = form.location.value;
 		const category_id = form.category_id.value;
 		const yearOfUsed = form.used.value;
@@ -40,6 +47,7 @@ const AddAProduct = () => {
 					price,
 					condition,
 					phone,
+					email,
 					location, 
 					category_id,
 					yearOfUsed,
@@ -60,6 +68,7 @@ const AddAProduct = () => {
 				.then(data => {
 					toast.success("Product Added Successful")
 					form.reset()
+					navigate("/dashboard/myProducts")
 					console.log(data)
 				})
 				.catch(error => {
@@ -99,6 +108,10 @@ const AddAProduct = () => {
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="phone" className="text-sm">Mobile Number</label>
 					<input id="phone" type="text" name='phone' placeholder="phone" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
+				</div>
+				<div className="col-span-full sm:col-span-3">
+					<label htmlFor="email" className="text-sm">Email</label>
+					<input id="email" type="text" name='email' defaultValue={user?.email} placeholder="email" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="location" className="text-sm">Location</label>

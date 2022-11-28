@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Category = ({category}) => {
+const Category = ({category, refetch}) => {
      
     const {image, name, id} = category;
 
