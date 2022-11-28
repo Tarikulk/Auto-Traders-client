@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import { getAllBookingByEmail } from '../../Api/booking';
+// import { getAllBookingByEmail } from '../../Api/booking';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const BuyersHome = () => {
@@ -70,7 +70,7 @@ const BuyersHome = () => {
                   </Link>
                 } 
                 {
-                  booking.price && booking.paid && <span className='text-black'>Paid</span>
+                  booking.price && booking.paid && <span className='text-green-500'>Paid</span>
                 }
             </td>
           </tr> )
