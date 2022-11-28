@@ -62,6 +62,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link
+                    to="/blog"
                     className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-indigo-800"
                     href=""
                   >
