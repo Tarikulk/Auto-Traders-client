@@ -10,10 +10,11 @@ const AddAProduct = () => {
 		const name = form.name.value;
 		const originalPrice = form.originalPrice.value;
 		const price = form.price.value;
-		const condition = form.price.value;
+		const condition = form.condition.value;
 		const phone = form.phone.value;
 		const location = form.location.value;
 		const category_id = form.category_id.value;
+		const yearOfUsed = form.used.value;
 		const purchase = form.purchase.value;
 		const time = form.time.value;
 		const sellerName = form.sellerName.value;
@@ -41,6 +42,7 @@ const AddAProduct = () => {
 					phone,
 					location, 
 					category_id,
+					yearOfUsed,
 					purchase,
 					time,
 					sellerName,
@@ -80,53 +82,58 @@ const AddAProduct = () => {
 			<div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="username" className="text-sm">Products Name</label>
-					<input id="username" type="text" name='name' placeholder="products name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" />
+					<input id="username" type="text" name='name' placeholder="products name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="originalPrice" className="text-sm">Original Price</label>
-					<input id="originalPrice" type="text" name='originalPrice' placeholder="Original Price" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" />
+					<input id="originalPrice" type="text" name='originalPrice' placeholder="Original Price" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="price" className="text-sm">Price</label>
-					<input id="price" type="text" name='price' placeholder="price" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" />
+					<input id="price" type="text" name='price' placeholder="price" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="condition" className="text-sm">Condition</label>
-					<input id="condition" type="text" name='condition' placeholder="condition" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" />
+					<input id="condition" type="text" name='condition' placeholder="condition" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="phone" className="text-sm">Mobile Number</label>
-					<input id="phone" type="text" name='phone' placeholder="phone" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" />
+					<input id="phone" type="text" name='phone' placeholder="phone" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="location" className="text-sm">Location</label>
-					<input id="location" type="text" name='location' placeholder="location" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" />
+					<input id="location" type="text" name='location' placeholder="location" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="category" className="text-sm">Brand</label>
-					<input id="category" type="text" name='category' placeholder="product Category" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" />
+					<input id="category" type="text" defaultValue="(Mercedes ct_id = 01) (BMW ct_id = 02) (Test ct_id = 03)" disabled placeholder="product Category" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2"  />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="categoryId" className="text-sm">Category Id</label>
-					<input id="categoryId" type="text" name='category_id' placeholder="category id" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" />
+					<input id="categoryId" type="text" name='category_id' placeholder="category id" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="purchase" className="text-sm">Year Of Purchase</label>
-					<input id="purchase" type="text" name='purchase' placeholder="year" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" />
+					<input id="purchase" type="text" name='purchase' placeholder="year" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
+				</div>
+				<div className="col-span-full sm:col-span-3">
+					<label htmlFor="used" className="text-sm">Years Of Used</label>
+					<input id="used" type="text" name='used' placeholder="year of used" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="time" className="text-sm">Posting Time</label>
-					<input id="time" type="date" name='time' placeholder="time" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" />
+					<input id="time" type="date" name='time' placeholder="time" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="sellerName" className="text-sm">Seller Name</label>
-					<input id="sellerName" type="text" name='sellerName' placeholder="sellerName" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" />
+					<input id="sellerName" type="text" name='sellerName' placeholder="sellerName" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900 p-2" required />
 				</div> 
 				<div className='ml-8'>
+					
               <label htmlFor='image' className='block mb-2 text-sm'>
                 Select Car Image:
               </label>
-              <input
+              <input 
                 required
                 type='file'
                 id='image'

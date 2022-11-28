@@ -8,6 +8,7 @@ import BuyersHome from "../../Pages/DashboardData/BuyersHome";
 import MyProducts from "../../Pages/DashboardData/MyProducts";
 import CategoriesCar from "../../Pages/Home/CategoriesCar/CategoriesCar";
 import Home from "../../Pages/Home/Home/Home";
+import Payment from "../../Pages/Payment/Payment";
 import ErrorPage from "../../Pages/Shared/ErrorPage/ErrorPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
             {
                 path:"/categoriesCar/:id",
                 element: <PrivateRoute><CategoriesCar></CategoriesCar></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/categoriesCar/${params.id}`) 
+            loader: ({params}) => fetch(`http://localhost:5000/categoriesCar/${params.id}`) 
             },
             {
                 path:"/signIn",
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
         errorElement:<ErrorPage></ErrorPage>,
         children:[
            {
-            path:"/dashboard/buyerHome",
+            path:"/dashboard",
             element:<BuyersHome></BuyersHome>
            },
            {
@@ -52,7 +53,12 @@ export const router = createBrowserRouter([
            {
             path:"/dashboard/myProducts",
             element: <MyProducts></MyProducts>,
-            loader: ({params}) => fetch(`http://localhost:5000/categoriesCar/${params.id}`)
+            // loader: ({params}) => fetch(`http://localhost:5000/categoriesCar/${params.id}`)
+           },
+           {
+            path:"/dashboard/payment/:id",
+            element: <Payment></Payment>,
+            loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`) 
            }
         ]
     }

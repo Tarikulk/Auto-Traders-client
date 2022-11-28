@@ -1,17 +1,18 @@
 import React from 'react';
 
 const Categories = ({categories, setBookingsCar}) => { 
+	console.log(categories)
 
-    const {author, name, price, YearsOfUse} = categories; 
+    const {condition, image, name, originalPrice, price, sellerName, time, yearOfUsed} = categories; 
 
     return (
         <div>
             <div className="rounded-md shadow-md sm:w-96 bg-indigo-800 dark:text-gray-100">
 	<div className="flex items-center justify-between p-3">
 		<div className="flex items-center space-x-2">
-			<img src={author.sellerImg} alt="" className="object-cover object-center w-8 h-8 rounded-full shadow-sm dark:bg-gray-500 dark:border-gray-700" />
+			<img src="https://i.ibb.co/XS557Pk/274467547-1111767866283383-7054671178087598912-n-2.jpg" alt="" className="object-cover object-center w-8 h-8 rounded-full shadow-sm dark:bg-gray-500 dark:border-gray-700" />
 			<div className="-space-y-1">
-				<h2 className="text-sm font-semibold leading-none">{author.name}</h2>
+				<h2 className="text-sm font-semibold leading-none">{sellerName}</h2>
 			</div>
 		</div>
 		<button title="Open options" type="button">
@@ -22,26 +23,26 @@ const Categories = ({categories, setBookingsCar}) => {
 			</svg>
 		</button>
 	</div>
-	<img src={author.img} alt="" className="object-cover object-center w-full h-72 dark:bg-gray-500" />
+	<img src={image} alt="" className="object-cover object-center w-full h-72 dark:bg-gray-500" />
 	<div className="p-3">
 		<div className="flex items-center justify-between">
 			<div className="flex items-center space-x-3">
 				 <h1 className='text-xl font-bold'>{name}</h1>
 				  
 			</div>
-			<h1>Condition: {author.condition}</h1>
+			<h1>Condition: {condition}</h1>
 		</div>
 		<div className="flex items-center justify-between py-3">
 		<div className="flex items-center">
-			<h1>Original Price: ${price.originalPrice}</h1>
+			<h1>Original Price: ${originalPrice}</h1>
 		</div>
-		 <h1>Resale: ${price.price}</h1>
+		 <h1>Resale: ${price}</h1>
 	</div>
     <div className="flex items-center justify-between py-3">
 		<div className="flex items-center">
-			<h1> Used: {YearsOfUse} years</h1>
+			<h1> Used: {yearOfUsed} years</h1>
 		</div>
-		 <h1> Posted:</h1>
+		 <h1> Posted: {time}</h1>
 	</div>
            <div className='w-full text-center'>
 		   <label onClick={() => setBookingsCar(categories)} htmlFor="booking-modal" className="btn glass w-full text-white font-bold">Book Car</label>

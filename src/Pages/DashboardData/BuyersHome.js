@@ -1,23 +1,35 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { getAllBookingByEmail } from '../../Api/booking';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const BuyersHome = () => {
 
     const {user} = useContext(AuthContext);
-    const [bookings, setBookings] = useState([]);
-    console.log(bookings)
+    // const [bookings, setBookings] = useState([]);
 
-    useEffect(() =>{
-        getAllBookingByEmail(user?.email)
-        .then(data => {
-         setBookings(data)
-        })
-        .catch(err => {
-            toast.error(err)
-        })
-    }, [user])
+    // useEffect(() =>{
+    //     getAllBookingByEmail(user?.email)
+    //     .then(data => {
+    //      setBookings(data)
+    //     })
+    //     .catch(err => {
+    //         toast.error(err)
+    //     })
+    // }, [user])
+
+    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+
+    const {data : bookings = []} = useQuery({
+      queryKey: ["bookings", user?.email], 
+      queryFn: async() =>{
+        const res = await fetch(url)
+        const data = await res.json()
+        return data;
+      }
+    }) 
 
     return (
         <div className="overflow-x-auto w-full">
@@ -49,9 +61,18 @@ const BuyersHome = () => {
               <br/>
             </td>
             <td>{booking.price}</td>
-            <th>
-              <button className="btn glass text-black btn-xs">Pay</button>
-            </th>
+            <td> 
+                {
+                  booking.price &&  !booking.paid && <Link to={`/dashboard/payment/${booking._id}`}>
+                  <button className="btn glass text-black btn-xs">
+                    pay
+                  </button>
+                  </Link>
+                } 
+                {
+                  booking.price && booking.paid && <span className='text-black'>Paid</span>
+                }
+            </td>
           </tr> )
       }
     </tbody>  
