@@ -23,3 +23,6 @@
 #Admin : Admin went up and I put two routes first all Seller and second all Buyer.An admin can delete a seller from all sellers and an admin can delete a buyer from all buyers.
 
 #For authentication I used fire best where username user profile user email user password user role create account and login with email and password. And I have implemented google login as login with social account
+
+#Admin Email : obayedullahkhan986@gmail.com
+#password: asdfasdf
