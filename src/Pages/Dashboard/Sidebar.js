@@ -3,7 +3,7 @@ import AdminMenu from './AdminMenu';
 import BuyerMenu from './BuyerMenu';
 import SellerMenu from './SellerMenu';
 
-const Sidebar = ({usersRole}) => { 
+const Sidebar = ({usersRole}) => {  
 
     return (
       <div>

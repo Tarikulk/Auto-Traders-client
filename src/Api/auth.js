@@ -2,10 +2,10 @@ export const setAuthToken = userInfo =>{
         const currentUser = {
         email : userInfo.user.email, 
         role : userInfo.role,
-        name: userInfo.name
+        name: userInfo.name,
     }
 
-    fetch(`http://localhost:5000/user/${userInfo?.user?.email}`, {
+    fetch(`https://resale-web-server-tarikulk.vercel.app/user/${userInfo?.user?.email}`, {
         method:"PUT",
         headers:{  
             "content-type": "application/json"

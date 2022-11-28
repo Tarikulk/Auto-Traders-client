@@ -7,10 +7,10 @@ const Footer = () => {
            <footer className="dark:bg-indigo-800 dark:text-white  mt-10">
 	<div className="container flex flex-col p-4 mx-auto md:p-8 lg:flex-row divide-gray-400">
 		<ul className="self-center py-6 space-y-4 text-center sm:flex sm:space-y-0 sm:justify-around sm:space-x-4 lg:flex-1 lg:justify-start">
-			<li><Link to="/">Home</Link></li>
-			<li><Link to="/services">Services</Link></li>
-			<li><Link to="/blog">Blog</Link></li>
-			<li><Link to="/contact">Contact</Link></li>
+			<li><Link>Home</Link></li>
+			<li><Link>Services</Link></li>
+			<li><Link>Blog</Link></li>
+			<li><Link>Contact</Link></li>
 		</ul>
   
 		<div className="flex flex-col justify-center pt-6 lg:pt-0">
@@ -43,7 +43,7 @@ const Footer = () => {
 			</div>
 		</div>
 	</div>
-    <div className="py-6 text-sm text-center text-white">© 2022 WL-Photography. All rights reserved.</div>
+    <div className="py-6 text-sm text-center text-white">© 2022 Auto Traders. All rights reserved.</div>
 </footer>
         </div>
     );

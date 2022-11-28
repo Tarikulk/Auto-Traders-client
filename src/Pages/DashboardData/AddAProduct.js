@@ -57,7 +57,7 @@ const AddAProduct = () => {
 					image: imgData.data.display_url,
 					description
 				}
-				fetch("http://localhost:5000/categoriesCar", {
+				fetch("https://resale-web-server-tarikulk.vercel.app/categoriesCar", {
 				   method:"POST",
 				   headers:{
 					"content-type":"application/json"

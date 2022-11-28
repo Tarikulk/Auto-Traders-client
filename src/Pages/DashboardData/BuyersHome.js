@@ -1,26 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
+import React, { useContext} from 'react';
 import { Link } from 'react-router-dom';
-// import { getAllBookingByEmail } from '../../Api/booking';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const BuyersHome = () => {
 
-    const {user} = useContext(AuthContext);
-    // const [bookings, setBookings] = useState([]);
+    const {user} = useContext(AuthContext); 
 
-    // useEffect(() =>{
-    //     getAllBookingByEmail(user?.email)
-    //     .then(data => {
-    //      setBookings(data)
-    //     })
-    //     .catch(err => {
-    //         toast.error(err)
-    //     })
-    // }, [user])
-
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const url = `https://resale-web-server-tarikulk.vercel.app/bookings?email=${user?.email}`;
 
     const {data : bookings = []} = useQuery({
       queryKey: ["bookings", user?.email], 

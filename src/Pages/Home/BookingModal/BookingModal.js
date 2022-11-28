@@ -30,7 +30,7 @@ const BookingModal = ({categories, setBookingsCar}) => {
            location
         }
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://resale-web-server-tarikulk.vercel.app/bookings', {
             method:"POST",
             headers:{
                 "content-type": "application/json"

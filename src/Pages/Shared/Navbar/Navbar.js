@@ -68,15 +68,7 @@ const Navbar = () => {
                   >
                     Blog
                   </Link>
-                </li>
-                <li>
-                  <Link
-                    className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-indigo-800"
-                    href=""
-                  >
-                    Contact Us
-                  </Link>
-                </li>
+                </li> 
                 {
                   user?.uid ?  
                   <li className="dropdown inline-block relative w-full md:w-auto md:mb-0 mb-2">
