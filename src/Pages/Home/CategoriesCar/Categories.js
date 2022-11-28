@@ -44,9 +44,14 @@ const Categories = ({categories, setBookingsCar}) => {
 		</div>
 		 <h1> Posted: {time}</h1>
 	</div>
-           <div className='w-full text-center'>
-		   <label onClick={() => setBookingsCar(categories)} htmlFor="booking-modal" className="btn glass w-full text-white font-bold">Book Car</label>
+          <div className='flex justify-between'>
+		  <div className='text-center'>
+		   <label onClick={() => setBookingsCar(categories)} htmlFor="booking-modal" className="btn glass  text-white font-bold">Book Car</label>
            </div>
+           <div className='text-center'>
+		   <label htmlFor="booking-modal" className="btn glass text-white font-bold">Report</label>
+           </div>
+		  </div>
 	</div>
 </div>
         </div>

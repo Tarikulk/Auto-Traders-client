@@ -39,6 +39,7 @@ const Signup = () => {
         const user = result.user;  
         const userInfo = {
           user,
+          name: user?.displayName,
           role
         }
         setAuthToken(userInfo)
@@ -47,11 +48,12 @@ const Signup = () => {
         .then(
           toast.success("user create successfully")
           )
-          navigate("/")
+          
         .catch(error => {
           toast.success("user create successfully")
           console.error(error)}
         )
+        navigate("/")
         form.reset();
       })
       .catch(error => {
@@ -72,6 +74,7 @@ const Signup = () => {
       const user = result.user;
       const userInfo = {
         user,
+        name: user?.displayName,
         role : "buyer"
       }
       setAuthToken(userInfo)

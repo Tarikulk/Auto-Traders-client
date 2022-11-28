@@ -1,7 +1,8 @@
 export const setAuthToken = userInfo =>{
         const currentUser = {
         email : userInfo.user.email, 
-        role : userInfo.role
+        role : userInfo.role,
+        name: userInfo.name
     }
 
     fetch(`http://localhost:5000/user/${userInfo?.user?.email}`, {

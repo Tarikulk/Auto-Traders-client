@@ -25,6 +25,7 @@ const SingIn = () => {
       console.log(user)
       const userInfo = {
         user,
+        name: user?.displayName
       }
       setAuthToken(userInfo)
       toast.success("Login successful")
@@ -43,6 +44,7 @@ const SingIn = () => {
 
       const userInfo = {
         user, 
+        name: user?.displayName,
         role : "buyer"
       }
 
