@@ -49,7 +49,7 @@ const Categories = ({categories, setBookingsCar}) => {
 		   <label onClick={() => setBookingsCar(categories)} htmlFor="booking-modal" className="btn glass  text-white font-bold">Book Car</label>
            </div>
            <div className='text-center'>
-		   <label htmlFor="booking-modal" className="btn glass text-white font-bold">Report</label>
+		   <label className="btn glass text-white font-bold">Report</label>
            </div>
 		  </div>
 	</div>

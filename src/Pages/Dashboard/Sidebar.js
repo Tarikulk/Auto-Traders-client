@@ -13,7 +13,7 @@ const Sidebar = ({usersRole}) => {
   <div className="drawer-side">
     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label> 
     <ul className="menu p-4 w-80 text-base-content">  
-    <nav>
+            <nav>
               {usersRole && usersRole !== 'buyer' ? (
                 <>{usersRole === 'admin' ? <AdminMenu /> : <SellerMenu />} </>
               ) : (

@@ -6,7 +6,6 @@ const Category = ({category, refetch}) => {
     const {image, name, id} = category;
 
     return (
-        <div>
            <div className="card card-compact w-96 bg-indigo-800 shadow-xl">
   <figure><img src={image} className="w-full" style={{height:"250px"}} alt="Shoes" /></figure>
   <div className="card-body">
@@ -18,7 +17,6 @@ const Category = ({category, refetch}) => {
     </div>
   </div>
 </div>
-        </div>
     );
 };
 

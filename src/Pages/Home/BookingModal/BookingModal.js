@@ -2,11 +2,10 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
-const BookingModal = ({categories, setBookingsCar}) => {
+const BookingModal = ({bookingsCar, setBookingsCar}) => {
     
     const {user} = useContext(AuthContext); 
-    const {name, price} = categories;
-    console.log(categories)
+    const {name, price, image} = bookingsCar;
     
     const handleSubmit = event =>{
         event.preventDefault();
@@ -30,10 +29,11 @@ const BookingModal = ({categories, setBookingsCar}) => {
            location
         }
 
-        fetch('https://resale-web-server-tarikulk.vercel.app/bookings', {
+        fetch('http://localhost:5000/bookings', {
             method:"POST",
             headers:{
-                "content-type": "application/json"
+                "content-type": "application/json",
+                authorization : `bearer ${localStorage.getItem("autoTraders")}`
             },
             body: JSON.stringify(booking)
         })
@@ -59,7 +59,7 @@ const BookingModal = ({categories, setBookingsCar}) => {
   <div className="modal-box relative">
     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
      <form onSubmit={handleSubmit} className='grid grid-cols-1 gap-3 mt-10'>
-     <input type="text" name='image'  defaultValue={categories.image} readOnly className="input input-bordered w-full"/>
+     <input type="text" name='image'  defaultValue={image} readOnly className="input input-bordered w-full"/>
      <input type="text" name='email'  defaultValue={user?.email} readOnly className="input input-bordered w-full" />
      <input type="text" name='name'  defaultValue={user?.displayName} readOnly className="input input-bordered w-full" />
      <input type="text" name='carName'  defaultValue={name} className="input input-bordered w-full" />

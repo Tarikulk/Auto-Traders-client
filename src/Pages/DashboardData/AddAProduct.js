@@ -57,10 +57,11 @@ const AddAProduct = () => {
 					image: imgData.data.display_url,
 					description
 				}
-				fetch("https://resale-web-server-tarikulk.vercel.app/categoriesCar", {
+				fetch("http://localhost:5000/categoriesCar", {
 				   method:"POST",
 				   headers:{
-					"content-type":"application/json"
+					"content-type":"application/json",
+					authorization : `bearer ${localStorage.getItem("autoTraders")}`
 				   },
 				   body: JSON.stringify(carCategoriesInfo)
 				})
@@ -82,7 +83,7 @@ const AddAProduct = () => {
 	 }
 
     return (
-        <div>
+        <div className='mt-40'>
             <section className="p-6 bg-indigo-800 dark:text-gray-50 rounded-lg">
 
 

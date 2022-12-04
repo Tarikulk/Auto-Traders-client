@@ -7,16 +7,21 @@ const BuyersHome = () => {
 
     const {user} = useContext(AuthContext); 
 
-    const url = `https://resale-web-server-tarikulk.vercel.app/bookings?email=${user?.email}`;
 
-    const {data : bookings = []} = useQuery({
+    const {data : bookings = [], refetch} = useQuery({
       queryKey: ["bookings", user?.email], 
       queryFn: async() =>{
-        const res = await fetch(url)
+        const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+          headers: {
+            authorization : `bearer ${localStorage.getItem("autoTraders")}`
+          }
+        })
         const data = await res.json()
         return data;
       }
-    }) 
+    })  
+
+    refetch();
 
     return (
         <div className="overflow-x-auto w-full">
@@ -31,7 +36,7 @@ const BuyersHome = () => {
     </thead>
     <tbody>
       {
-        bookings.map(booking => <tr key={booking._id}> 
+        bookings?.map(booking => <tr key={booking._id}> 
             <td>
               <div className="flex items-center space-x-3">
                 <div className="avatar">

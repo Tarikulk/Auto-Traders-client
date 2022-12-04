@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Loading from '../../../Components/Loading/Loading';
 import Category from './Category';
 
@@ -9,7 +9,7 @@ const CategoryHome = () => {
     const {data: categories = [], refetch, isLoading } = useQuery({
          queryKey:["categories"],
          queryFn: async() =>{
-            const res = await fetch(`https://resale-web-server-tarikulk.vercel.app/categories`)
+            const res = await fetch(`http://localhost:5000/categories`)
             const data = await res.json()
             refetch()
             return data;
@@ -21,7 +21,7 @@ const CategoryHome = () => {
     };
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 mx-10 my-16'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-10 my-16 ml-20 md:ml-10 lg:ml-10'>
             {
                 categories.map(category => <Category
                 key={category._id}

@@ -8,15 +8,22 @@ const AllBuyers = () => {
     const {data : allBuyers = [], refetch} = useQuery({
         queryKey: ["allBuyers"],
         queryFn: async() =>{
-         const res = await fetch("https://resale-web-server-tarikulk.vercel.app/allBuyers")
+         const res = await fetch("http://localhost:5000/allBuyers",{
+            headers:{
+                authorization : `bearer ${localStorage.getItem("autoTraders")}`
+             }
+         })
          const data = await res.json() 
          return data
         }
      })
 
      const handleDelete = (id) =>{
-        fetch(`https://resale-web-server-tarikulk.vercel.app/allSellers/${id}`, {
+        fetch(`http://localhost:5000/allSellers/${id}`, {
          method:"DELETE",
+         headers:{
+            authorization: `bearer ${localStorage.getItem("autoTraders")}`
+         }
         })
         .then(res => res.json())
         .then(data => {
@@ -30,7 +37,7 @@ const AllBuyers = () => {
     return (
         <div>
             {
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10'>
                 {
                     allBuyers.map(buyers => <AllBuyersDetail
                     key={buyers._id}

@@ -19,100 +19,43 @@ const Navbar = () => {
       console.log(error)
     })
   }
+ 
+  const menuItems = <>
+        <li><Link to="/">Home</Link></li> 
+        <li><Link to="/blog">Blog</Link></li>
+       { user?.uid ? 
+        <>
+        <li><Link to="/dashboard">DashBoard</Link></li>
+        <li><button onClick={handleLogOut} to="/login">Sign Out</button></li>
+        </>
+        :
+        <li><Link to="/signIn">Login</Link></li>
 
-  return (
-    <div>
-      <header className="lg:px-16 px-8 bg-indigo-700 shadow-md py-4 md:py-0">
-        <div className="container mx-auto flex flex-wrap items-center">
-          <div className="flex-1 flex justify-between items-center">
-            <Link
-              to="/"
-              className="text-xl font-semibold text-green-100 hover:text-white tracking-normal"
-            >
-              Auto Trader
-            </Link>
-          </div>
+        }
+  </>
 
-          <label htmlFor="menu-toggle" className="pointer-cursor md:hidden block">
-            <svg
-              className="fill-current text-gray-300 hover:text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-            > 
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-            </svg>
-          </label>
-          <input className="hidden" type="checkbox" id="menu-toggle" />
-
-          <div
-            className="hidden md:flex md:items-center md:w-auto w-full"
-            id="menu"
-          >
-              <ul className="md:flex items-center justify-between text-base pt-4 md:pt-0">
-                <li>
-                  <Link
-                   to="/"
-                    className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-indigo-800"
-                    href=""
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/blog"
-                    className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-indigo-800"
-                    href=""
-                  >
-                    Blog
-                  </Link>
-                </li> 
-                {
-                  user?.uid ?  
-                  <li className="dropdown inline-block relative w-full md:w-auto md:mb-0 mb-2">
-                  <div className="dropdown dropdown-start md:dropdown-end">
-                    <label
-                      tabIndex={0}
-                      className="btn btn-ghost btn-circle avatar"
-                    >
-                      <div className="w-10 rounded-full">
-                        <img src={user?.photoURL} alt="" />
-                      </div>
-                    </label>
-                    <ul
-                      tabIndex={0}
-                      className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-                    >
-                      <li>
-                        <Link to="/dashboard" className="justify-between">
-                          Dashboard
-                        </Link>
-                      </li> 
-                      <li>
-                        <button onClick={handleLogOut}>Logout</button>
-                      </li>
-                    </ul>
-                  </div>
-                </li> 
-                :
-                  <li>
-                  <Link
-                    to="signIn"
-                    className="md:px-4 py-2 md:py-4 px-0 block text-green-100 hover:text-white md:hover:bg-indigo-800"
-                    href=""
-                  >
-                    Sing In
-                  </Link>
-                </li>
-               
-                }
-              </ul>
-          </div>
-        </div>
-      </header>
+  return ( 
+  <div className="navbar flex justify-between  text-white bg-indigo-800">
+  <div className="navbar-start">
+    <div className="dropdown">
+      <label tabIndex={0} className="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+      </label>
+      <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-indigo-800 rounded-box w-52">
+        {menuItems}
+      </ul>
     </div>
+    <Link to="/" className="btn btn-ghost normal-case text-xl">Auto Traders</Link>
+  </div>
+  <div className="navbar-center hidden lg:flex justify-between">
+    <ul className="menu menu-horizontal p-0">
+      {menuItems}
+    </ul>
+  </div> 
+  <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+  </label>
+</div> 
   );
 };
 
