@@ -3,7 +3,9 @@ import toast from 'react-hot-toast';
 
 const SellerAllProducts = ({products, sellerProducts, setSellerProducts}) => {
 
-    const {condition, image, name, originalPrice, price, sellerName, time, yearOfUsed, _id} = products;
+	console.log(products)
+
+    const {condition, image, name, originalPrice, price, sellerName, time, yearOfUsed, _id, description} = products;
 
 	const handleDelete = (id) =>{
 		fetch(`http://localhost:5000/categoriesCar/${_id}`, {
@@ -19,20 +21,21 @@ const SellerAllProducts = ({products, sellerProducts, setSellerProducts}) => {
 		})
 
 	}
-
-	const advertiseItem = {
-		carName: name,
-		sellerName: sellerName,
-		price: price,
-		carImage: image
-	}
-
+	
 	const handleAdvertise = (id) =>{
-		fetch(`http://localhost:5000/advertise/${id}`, {
+		
+		const advertiseItem = {
+			name,
+			description,
+			price,
+			image
+		}
+
+		fetch(`http://localhost:5000/advertise`, {
 			method:"POST",
 			headers:{
 				"content-type": "application/json",
-				authorization : `bearer ${localStorage.getItem("autoTraders")}`
+				authorization : `bearer ${localStorage.getItem("autoTraders")}`,
 			},
 			body: JSON.stringify(advertiseItem)
 		})
@@ -84,7 +87,7 @@ const SellerAllProducts = ({products, sellerProducts, setSellerProducts}) => {
                <button onClick={() =>handleDelete(_id)} className='btn glass'>Delete</button>
             </div>
             <div>
-		    <button onClick={() =>handleAdvertise(_id)} className='btn glass advertise'>Advertise</button>
+		    <button onClick={handleAdvertise} className='btn glass advertise'>Advertise</button>
            </div>
            </div>
 	</div>
