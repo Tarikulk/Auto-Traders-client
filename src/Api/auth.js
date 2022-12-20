@@ -5,7 +5,7 @@ export const setAuthToken = userInfo =>{
         name: userInfo.name,
     }
 
-    fetch(`http://localhost:5000/user?email=${userInfo?.user?.email}`, {
+    fetch(`https://resale-web-server-tarikulk.vercel.app/user?email=${userInfo?.user?.email}`, {
         method:"PUT",
         headers:{  
             "content-type": "application/json"

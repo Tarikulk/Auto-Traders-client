@@ -7,7 +7,7 @@ const Advertise = () => {
     const {data : allAdvertise = [], refetch} = useQuery({
 		queryKey:["allAdvertise"],
 		queryFn: async() =>{
-			const res = await fetch("http://localhost:5000/advertise", {
+			const res = await fetch("https://resale-web-server-tarikulk.vercel.app/advertise", {
 				headers:{
 					authorization : `bearer ${localStorage.getItem("autoTraders")}`
 				 }

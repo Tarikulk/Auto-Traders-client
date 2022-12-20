@@ -8,7 +8,7 @@ const AllSeller = () => {
     const {data : allSellers = [], refetch} = useQuery({
        queryKey: ["allSellers"],
        queryFn: async() =>{
-        const res = await fetch("http://localhost:5000/allSellers", {
+        const res = await fetch("https://resale-web-server-tarikulk.vercel.app/allSellers", {
           headers:{
               authorization : `bearer ${localStorage.getItem("autoTraders")}`
           }
@@ -19,7 +19,7 @@ const AllSeller = () => {
     })
 
     const handleDelete = (id) =>{
-       fetch(`http://localhost:5000/allSellers/${id}`, {
+       fetch(`https://resale-web-server-tarikulk.vercel.app/allSellers/${id}`, {
         method:"DELETE",
         headers:{
             authorization : `bearer ${localStorage.getItem("autoTraders")}`
@@ -36,7 +36,7 @@ const AllSeller = () => {
 
 
     const handleVerify = (id) =>{
-        fetch(`http://localhost:5000/user/verify/${id}`, {
+        fetch(`https://resale-web-server-tarikulk.vercel.app/user/verify/${id}`, {
           method: "PUT",
           headers:{
             authorization: `bearer ${localStorage.getItem("autoTraders")}`

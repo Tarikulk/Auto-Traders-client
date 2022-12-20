@@ -10,7 +10,7 @@ const MyProducts = () => {
     const [sellerProducts, setSellerProducts] = useState([]); 
     
     useEffect(() =>{
-     fetch(`http://localhost:5000/categoriesCar?email=${user?.email}`)
+     fetch(`https://resale-web-server-tarikulk.vercel.app/categoriesCar?email=${user?.email}`)
      .then(res => res.json())
      .then(data => {
         setSellerProducts(data)

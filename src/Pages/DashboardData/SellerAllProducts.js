@@ -8,7 +8,7 @@ const SellerAllProducts = ({products, sellerProducts, setSellerProducts}) => {
     const {condition, image, name, originalPrice, price, sellerName, time, yearOfUsed, _id, description} = products;
 
 	const handleDelete = (id) =>{
-		fetch(`http://localhost:5000/categoriesCar/${_id}`, {
+		fetch(`https://resale-web-server-tarikulk.vercel.app/categoriesCar/${_id}`, {
 			method:"DELETE"
 		})
 		.then(res => res.json())
@@ -31,7 +31,7 @@ const SellerAllProducts = ({products, sellerProducts, setSellerProducts}) => {
 			image
 		}
 
-		fetch(`http://localhost:5000/advertise`, {
+		fetch(`https://resale-web-server-tarikulk.vercel.app/advertise`, {
 			method:"POST",
 			headers:{
 				"content-type": "application/json",
