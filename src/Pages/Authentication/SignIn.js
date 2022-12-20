@@ -3,6 +3,8 @@ import toast from 'react-hot-toast'
 import { Link, useLocation, useNavigate} from 'react-router-dom'
 import { setAuthToken } from '../../Api/auth'
 import { AuthContext } from '../../Contexts/AuthProvider'
+import SmallLoading from '../../Components/Loading/SmallLoading'
+
 
 const SingIn = () => {
 
@@ -115,7 +117,11 @@ const SingIn = () => {
           </div>
           <div className='space-y-2'>
           <div className='w-full text-center'>
-             <button type="submit" className='hover:text-gray-100 text-white bg-indigo-700 px-10 py-2 rounded-lg'>Sign In</button>
+             <button type="submit" className='hover:text-gray-100 text-white bg-indigo-700 px-10 py-2 rounded-lg'>
+              {
+                loading ? <SmallLoading></SmallLoading> : "Sign In"
+              }
+             </button>
             </div>
           </div>
         </form>
