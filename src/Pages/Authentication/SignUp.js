@@ -8,7 +8,7 @@ import SmallLoading from '../../Components/Loading/SmallLoading';
 const Signup = () => {
 
   const {createUser, updateUserProfile, loading, setLoading, signInWithGoogle} = useContext(AuthContext);
-
+  
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/"
@@ -51,15 +51,16 @@ const Signup = () => {
           )
           
         .catch(error => {
-          toast.success("user create successfully")
-          console.error(error)}
+          console.error(error)
+          toast.success(error.message)
+        }
         )
-        navigate("/")
+        navigate(from, {replace:true})
         form.reset();
       })
       .catch(error => {
-      toast.error(error)
-      console.error(error)
+        console.error(error)
+        toast.error(error.message)
       })
 
     })
@@ -83,7 +84,9 @@ const Signup = () => {
       navigate(from, {replace:true})
       console.log(user)
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+      console.error(error)
+    })
   }
  
 
@@ -109,7 +112,7 @@ const Signup = () => {
                 type='text'
                 name='name'
                 id='name'
-                // required
+                required
                 placeholder='Enter Your Name Here'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-indigo-700 bg-gray-200 text-gray-900'
                 data-temp-mail-org='0'
@@ -124,7 +127,7 @@ const Signup = () => {
                 id='image'
                 name='image'
                 accept='image/*'
-                // required
+                required
               />
             </div>
             <div>
@@ -132,7 +135,7 @@ const Signup = () => {
                 Email address
               </label>
               <input
-                // required
+                required
                 type='email'
                 name='email'
                 id='email'
@@ -151,7 +154,7 @@ const Signup = () => {
                 type='password'
                 name='password'
                 id='password'
-                // required
+                required
                 placeholder='*******'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:outline-indigo-700 text-gray-900'
               />

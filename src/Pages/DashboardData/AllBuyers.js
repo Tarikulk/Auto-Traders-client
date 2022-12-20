@@ -28,7 +28,7 @@ const AllBuyers = () => {
         .then(res => res.json())
         .then(data => {
          if(data.deletedCount > 0 ){
-             toast.success(`${allBuyers.email} deleted successfully`)
+             toast.success(`${allBuyers?.name} deleted successfully`)
              refetch()
            }
         })
